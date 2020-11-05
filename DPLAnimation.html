@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+
+<title>DPLanimation</title>
+
+
+
+<style style="text/css">
+:root {
+  --marginleft: 5%;
+  --marginleftstart: 20%;
+  --opacity: 1;
+
+}
+@font-face {
+    font-family: myFirstFont;
+    src: url(BebasNeue-Regular.ttf);
+}
+
+* {
+   font-family: myFirstFont;
+ }
+
+div.slide-left {
+  width:100%;
+  overflow:hidden;
+}
+div.slide-left p {
+  font-size: 50px;
+  animation: slide-left 1.5s;
+  animation-timing-function: ease-in-out;
+  margin-left: var(--marginleft);
+}
+
+div.slide-left img {
+  animation: slide-left 1.5s;
+  animation-timing-function: ease-in-out;
+  margin-left: var(--marginleft);
+}
+
+@keyframes slide-left {
+  from {
+    margin-left: var(--marginleftstart);
+    opacity:0;
+  }
+
+  to {
+    margin-left: var(--marginleft);
+    opacity:var(--opacity);
+  }
+}
+</style>
+
+<div class="slide-left">
+<img src="soviet doge.png" alt="There Should be a Doge Here but it's not lol">
+<p>The next bit of text is incorrect</p>
+<br>
+<p>The first bit of text is correct</p>
+<br>
+<p>e</p>
+<br>
+<p>a</p>
+</div>
