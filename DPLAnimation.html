@@ -7,7 +7,8 @@
 
 <style style="text/css">
 :root {
-  --marginleft: 5%;
+  --marginlefttext: 2%;
+  --marginleftimg: 10%;
   --marginleftstart: 20%;
   --opacity: 1;
   --animationduration: 1.5s;
@@ -34,38 +35,48 @@ div.slide-left p {
   font-size: 50px;
   color: white;
   display: inline-block;
-  animation: slide-left var(--animationduration);
+  animation: slide-leftp 1.5s;
   animation-timing-function: ease-in-out;
-  margin-left: var(--marginleft);
+  margin-left: var(--marginlefttext);
 }
 
 div.slide-left img {
-  width: 100px;
-  margin-top: 4.5%;
+  height: 40px;
+  margin-top: 5%;
   float: left;
   display: inline-block;
-  animation: slide-left var(--animationduration);
+  animation: slide-leftimg var(--animationduration);
   animation-timing-function: ease-in-out;
-  margin-left: var(--marginleft);
+  margin-left: var(--marginleftimg);
 }
 
-@keyframes slide-left {
+@keyframes slide-leftp {
+  from {
+    opacity:0;
+  }
+
+  to {
+    opacity:var(--opacity);
+  }
+}
+
+@keyframes slide-leftimg {
   from {
     margin-left: var(--marginleftstart);
     opacity:0;
   }
 
   to {
-    margin-left: var(--marginleft);
+    margin-left: var(--marginleftimg);
     opacity:var(--opacity);
   }
 }
+
 </style>
 
 <div class="slide-left">
-  <img src="Assets/Icons/AP_25.png" alt="There Should be a Doge Here but it's not lol"\> <p>The next bit of text is incorrect</p>
+  <img src="Assets/Icons/AP_25.png" alt="There Should be a Doge Here but it's not lol"\> <p>Is this working</p>
 </div>
-<br>
 <div class="slide-left">
-  <img src="Assets/Icons/AP_25.png" alt="There Should be a Doge Here but it's not lol"\> <p>The next bit of text is incorrect</p>
+  <img src="Assets/Icons/suppresedBLKTar.png" alt="There Should be a Doge Here but it's not lol"\> <p>The first bit of text is correct</p>
 </div>
