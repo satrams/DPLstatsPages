@@ -90,10 +90,11 @@ body {
   background: none;
   border: none;
   padding: inherit;
+  filter: invert(100%);
 }
 
 .statbtn:hover, .statbtn:focus {
-  background-color: #ddd;
+  background-color: #222; /* this inverts back to #ddd I swear */
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -129,8 +130,6 @@ body {
   border:none;
 }
 
-.dropdown img:hover {background-color: #ddd;}
-
 .show {display: block;}
 </style>
 
@@ -144,8 +143,8 @@ body {
  <button onclick="myFunction()" class="dropbtn">+</button>
  <div id="myDropdown" class="dropdown-content">
    <button onclick="addStat()" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
-   <img src="Assets/Icons/Mawp.png" alt="Gun"></img>
-   <img src="Assets/Icons/Mawp.png" alt="Gun"></img>
+   <button onclick="addStat()" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
+   <button onclick="addStat()" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
  </div>
 </div>
 
