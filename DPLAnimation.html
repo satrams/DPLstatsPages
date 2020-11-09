@@ -9,10 +9,10 @@
 :root {
   --marginlefttext: 1.5%;
   --marginleftimg: 10%;
-  --marginleftstart: 20%;
-  --opacity: 1;
+  --marginleftstart: 20%; /* the margin at the start of the animation */
+  --opacity: 1; /* the end opacity to fade to */
   --animationduration: 1.5s;
-  --size: 50px;
+  --size: 50px; /* the size of the text, images, and borders. Basically all of the sizes are tied to this value*/
 }
 
 body {
@@ -27,6 +27,9 @@ body {
 * {
    font-family: DPLfont;
  }
+/*
+  Code for lodaing the font
+*/
 
 
 
@@ -34,6 +37,10 @@ div.slide-left {
   width:100%;
   overflow:hidden
 }
+/*
+  create a new div class called slide-left
+*/
+
 div.slide-left p {
   font-size: var(--size);
   color: white;
@@ -43,6 +50,9 @@ div.slide-left p {
   margin-left: 10px;
   overflow: hidden;
 }
+/*
+  code for the p text elements
+*/
 
 div.slide-left img {
   border-style: solid;
@@ -51,7 +61,7 @@ div.slide-left img {
   padding: calc(var(--size)/10);
   text-overflow: ellipsis;
   height: var(--size);
-  margin-top: var(--size);
+  margin-top: var(--size); /* apparently having both the top margin and the height being the same thing aligns it to the text */
 
   float: left;
   display: inline-block;
@@ -59,6 +69,11 @@ div.slide-left img {
   animation-timing-function: ease-in-out;
   margin-left: var(--marginleftimg);
 }
+/*
+  code for the img elements
+  the images are actually the things that are animating left. The text just simply reacts
+*/
+
 
 @keyframes slide-leftp {
   from {
@@ -69,6 +84,9 @@ div.slide-left img {
     opacity:var(--opacity);
   }
 }
+/*
+  Just animate the opacity of the text
+*/
 
 @keyframes slide-leftimg {
   from {
@@ -81,6 +99,9 @@ div.slide-left img {
     opacity:var(--opacity);
   }
 }
+/*
+  Animates the images to move left whilst fading in
+*/
 
 </style>
 
