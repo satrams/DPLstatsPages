@@ -87,14 +87,16 @@ body {
 }
 
 .statbtn {
-  background: none;
+  min-width: 160px;
+  background-size: inherit;
+  background-color: #0e0e0e;
   border: none;
   padding: inherit;
   filter: invert(100%);
 }
 
 .statbtn:hover, .statbtn:focus {
-  background-color: #222; /* this inverts back to #ddd I swear */
+  background-color: #222;
 }
 
 .dropbtn:hover, .dropbtn:focus {
@@ -113,7 +115,8 @@ body {
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  overflow: auto;
+  max-height: 200px;
+  overflow: scroll;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -135,16 +138,22 @@ body {
 
 
 <body>
-<div class="selection">
-  <img src="Assets/Icons/Mawp.png" alt="Gun"> <text>Sick Sniper Kills: Joe</text> <br>
+<div id="statsList" class="selection">
+  <img src="Assets/Icons/Mawp.png" alt="Gun"> <text contenteditable=true>Sick Sniper Kills: Joe</text> <br>
 </div>
 
 <div class="dropdown">
  <button onclick="myFunction()" class="dropbtn">+</button>
  <div id="myDropdown" class="dropdown-content">
-   <button onclick="addStat()" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
-   <button onclick="addStat()" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
-   <button onclick="addStat()" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
+   <button onclick="addStat('clacker.png')" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
+   <button onclick="addStat('mawp.png')" class="statbtn"> <img src="Assets/Icons/mawp.png" alt="Gun"></img></button>
+   <button onclick="addStat('flashbang.png')" class="statbtn"> <img src="Assets/Icons/flashbang.png" alt="Gun"></img></button>
+   <button onclick="addStat('nack11.png')" class="statbtn"> <img src="Assets/Icons/nack11.png" alt="Gun"></img></button>
+   <button onclick="addStat('assaultshotgun.png')" class="statbtn"> <img src="Assets/Icons/assaultshotgun.png" alt="Gun"></img></button>
+   <button onclick="addStat('shotgun_tub12.png')" class="statbtn"> <img src="Assets/Icons/shotgun_tub12.png" alt="Gun"></img></button>
+   <button onclick="addStat('shotgun_shorty.png')" class="statbtn"> <img src="Assets/Icons/shotgun_shorty.png" alt="Gun"></img></button>
+   <button onclick="addStat('smoke.png')" class="statbtn"> <img src="Assets/Icons/smoke.png" alt="Gun"></img></button>
+   <button onclick="addStat('kr82-U.png')" class="statbtn"> <img src="Assets/Icons/kr82-U.png" alt="Gun"></img></button>
  </div>
 </div>
 
@@ -155,8 +164,9 @@ function myFunction() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-function addStat() {
-
+function addStat(string) {
+  var statsElement = document.getElementById("statsList");
+  statsElement.insertAdjacentHTML('beforeend', "<img src='Assets/Icons/'alt='Gun'> <text>Sick Sniper Kills: Joe</text> <br>")
 }
 
 // Close the dropdown if the user clicks outside of it
