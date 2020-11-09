@@ -12,6 +12,7 @@
   --marginleftstart: 20%;
   --opacity: 1;
   --animationduration: 1.5s;
+  --size: 50px;
 }
 
 body {
@@ -27,27 +28,30 @@ body {
    font-family: DPLfont;
  }
 
+
+
 div.slide-left {
   width:100%;
-  overflow:hidden;
+  overflow:hidden
 }
 div.slide-left p {
-  font-size: 50px;
+  font-size: var(--size);
   color: white;
   display: inline-block;
   animation: slide-leftp 1.5s;
   animation-timing-function: ease-in-out;
-  margin-left: var(--marginlefttext);
+  margin-left: 10px;
+  overflow: hidden;
 }
 
 div.slide-left img {
   border-style: solid;
-  border-width: 5px;
+  border-width: calc(var(--size)/10);
   border-color: white;
-  padding: .5%;
-
-  height: 50px;
-  margin-top: 2.5%;
+  padding: calc(var(--size)/10);
+  text-overflow: ellipsis;
+  height: var(--size);
+  margin-top: var(--size);
 
   float: left;
   display: inline-block;
@@ -79,18 +83,10 @@ div.slide-left img {
 }
 
 </style>
+
+
 <div class="slide-left">
-  <img src="Assets/Icons/AP_25.png" alt="Gun"> <p>Most AP-25 Kills: Romulus (the numbers guy)</p>
-  <br>
-  <img src="Assets/Icons/autoshotgun.png" alt="Gun"\> <p>Most AutoShotty Kills: RedCommissar - 15</p>
-  <br>
-  <img src="Assets/Icons/smoke.png" alt="Gun"\> <p>Most Smoke Kills: Curb - 6</p>
-  <br>
-  <img src="Assets/Icons/flashbang.png" alt="Gun"\> <p>Most Funny Flashbangs: Geo - 13</p>
-  <br>
-  <img src="Assets/Icons/mawp.png" alt="Gun"\> <p>Most Times Died Without Firing a Single Mawp Shot: Olivius - 50</p>
-  <br>
-  <img src="Assets/Icons/clacker.png" alt="Gun"\> <p>Most Clacker Team-kills: Komms - 4</p>
-  <br>
-  <img src="Assets/Icons/shotgun_tub12.png" alt="Gun"\> <p>Most Shotgun kills: satrams - 139</p>
+  <img src="Assets/Icons/AP_25.png" alt="Gun"> <p>Most AP-25 Kills: Romulus (the numbers guy)</p> <br>
+  <img src="Assets/Icons/AP_25.png" alt="Gun"> <p>Most AP-25 Kills: Romulus (the numbers guy)</p> <br>
+  <img src="Assets/Icons/AP_25.png" alt="Gun"> <p>Most AP-25 Kills: Romulus (the numbers guy)</p> <br>
 </div>
