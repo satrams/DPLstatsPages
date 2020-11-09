@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html>
+<title>DPLanimationSelector</title>
+
+
+
+<style style="text/css">
+:root {
+  --marginlefttext: 1.5%;
+  --marginleftimg: 10%;
+  --marginleftstart: 20%; /* the margin at the start of the animation */
+  --opacity: 1; /* the end opacity to fade to */
+  --animationduration: 1.5s;
+  --size: 50px; /* the size of the text, images, and borders. Basically all of the sizes are tied to this value*/
+}
+
+body {
+  background-color: black;
+}
+
+@font-face {
+    font-family: DPLfont;
+    src: url("assets/fonts/Bebas Neue Pro Bold.otf");
+}
+
+* {
+   font-family: DPLfont;
+ }
+/*
+  Code for lodaing the font
+*/
+
+
+
+.selection {
+  width:100%;
+  overflow:hidden
+}
+
+.selection text {
+  font-size: var(--size);
+  color: white;
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: var(--size);
+  overflow: hidden;
+}
+/*
+  code for the p text elements
+*/
+
+.selection img {
+  border-style: solid;
+  border-width: calc(var(--size)/10);
+  border-color: white;
+  padding: calc(var(--size)/10);
+  text-overflow: ellipsis;
+  height: var(--size);
+  margin-top: var(--size); /* apparently having both the top margin and the height being the same thing aligns it to the text */
+
+  float: left;
+  display: inline-block;
+  margin-left: var(--marginleftimg);
+}
+/*
+  code for the img elements
+  the images are actually the things that are animating left. The text just simply reacts
+*/
+
+
+.dropbtn {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  line-height: 25px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  font-size: var(--size);
+  border-width: calc(var(--size)/10);
+  border-color: white;
+  cursor: pointer;
+
+}
+
+.statbtn {
+  background: none;
+  border: none;
+  padding: inherit;
+}
+
+.statbtn:hover, .statbtn:focus {
+  background-color: #ddd;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: gray;
+}
+
+.dropdown {
+  position: relative;
+  margin-left: var(--marginleftimg);
+  margin-top: var(--size);
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content img {
+  color: black;
+  height: var(--size);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dopdown-content button {
+  border:none;
+}
+
+.dropdown img:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+
+
+<body>
+<div class="selection">
+  <img src="Assets/Icons/Mawp.png" alt="Gun"> <text>Sick Sniper Kills: Joe</text> <br>
+</div>
+
+<div class="dropdown">
+ <button onclick="myFunction()" class="dropbtn">+</button>
+ <div id="myDropdown" class="dropdown-content">
+   <button onclick="addStat()" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
+   <img src="Assets/Icons/Mawp.png" alt="Gun"></img>
+   <img src="Assets/Icons/Mawp.png" alt="Gun"></img>
+ </div>
+</div>
+
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function addStat() {
+
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
