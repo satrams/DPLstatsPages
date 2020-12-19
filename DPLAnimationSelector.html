@@ -40,12 +40,34 @@ body {
 
 .selection text {
   font-size: var(--size);
+  min-height: calc(var(--size) + var(--size)/5);
+  min-width: 10vw;
+  max-width: 60vw;
   color: white;
   display: inline-block;
   margin-left: 10px;
   margin-top: var(--size);
   overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: black;
+  border-radius: calc(var(--size)/5);
+  border-style: solid;
+  border-width: calc(var(--size)/10);
+  border-color: black;
 }
+
+
+.selection text:hover {
+  background-color: #1c1c1c;
+}
+
+.selection text:focus {
+  border-style: inset;
+  background-color: #333333;
+  border-color: darkgray;
+}
+
+
 /*
   code for the p text elements
 */
@@ -57,9 +79,8 @@ body {
   padding: calc(var(--size)/10);
   text-overflow: ellipsis;
   height: var(--size);
-  margin-top: var(--size); /* apparently having both the top margin and the height being the same thing aligns it to the text */
-
-  float: left;
+  margin-top: calc(var(--size)); /* apparently having both the top margin and the height being the same thing aligns it to the text */
+  margin-right:0px;
   display: inline-block;
   margin-left: var(--marginleftimg);
 }
@@ -68,8 +89,37 @@ body {
   the images are actually the things that are animating left. The text just simply reacts
 */
 
-
 .dropbtn {
+  border-style: none;
+  border-width: 0;
+  text-overflow: ellipsis;
+  background-color: black;
+  margin-top: calc(var(--size)); /* apparently having both the top margin and the height being the same thing aligns it to the text */
+  margin-right:0px;
+  padding: 0px;
+  height: calc(var(--size)*1.4);
+  margin-left: var(--marginleftimg);
+  display: inline-block;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.dropbtn img {
+  z-index: 0;
+  border-style: solid;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 0px;
+  height: var(--size);
+  border-width: calc(var(--size)/10);
+  border-color: white;
+  padding: calc(var(--size)/10);
+}
+.addbtn {
+  position: relative;
+  margin-left: var(--marginleftimg);
+  margin-top: var(--size);
+  display: inline-block;
   background-color: black;
   color: white;
   cursor: pointer;
@@ -83,7 +133,6 @@ body {
   border-width: calc(var(--size)/10);
   border-color: white;
   cursor: pointer;
-
 }
 
 .statbtn {
@@ -99,26 +148,26 @@ body {
   background-color: #222;
 }
 
-.dropbtn:hover, .dropbtn:focus {
+.dropbtn:hover {
   background-color: gray;
 }
 
-.dropdown {
-  position: relative;
-  margin-left: var(--marginleftimg);
-  margin-top: var(--size);
-  display: inline-block;
+.addbtn:hover {
+  background-color: gray;
 }
 
 .dropdown-content {
+  margin-left: var(--marginleftimg);
+  margin-top: calc(var(--size)*1.4);
+  display: inline-block;
   display: none;
-  position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
-  max-height: 200px;
+  position: absolute;
+  width: 180px;
+  height: 220px;
   overflow: scroll;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+  z-index: 2;
 }
 
 .dropdown-content img {
@@ -129,8 +178,28 @@ body {
   display: block;
 }
 
-.dopdown-content button {
+.dropdown-content button {
   border:none;
+}
+
+.removebtn {
+  margin-top: calc(var(--size) + var(--size)/3.5);
+  margin-left: 30px;
+  display: inline-block;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  line-height: 25px;
+  padding-top: 0px;
+  vertical-align: top;
+  padding-bottom: 10px;
+  font-size: var(--size);
+  border-width: calc(var(--size)/10);
+  border-color: white;
+  cursor: pointer;
 }
 
 .show {display: block;}
@@ -138,40 +207,56 @@ body {
 
 
 <body>
+
+
 <div id="statsList" class="selection">
-  <img src="Assets/Icons/Mawp.png" alt="Gun"> <text contenteditable=true>Sick Sniper Kills: Joe</text> <br>
+
 </div>
 
-<div class="dropdown">
- <button onclick="myFunction()" class="dropbtn">+</button>
- <div id="myDropdown" class="dropdown-content">
-   <button onclick="addStat('clacker.png')" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
-   <button onclick="addStat('mawp.png')" class="statbtn"> <img src="Assets/Icons/mawp.png" alt="Gun"></img></button>
-   <button onclick="addStat('flashbang.png')" class="statbtn"> <img src="Assets/Icons/flashbang.png" alt="Gun"></img></button>
-   <button onclick="addStat('nack11.png')" class="statbtn"> <img src="Assets/Icons/nack11.png" alt="Gun"></img></button>
-   <button onclick="addStat('assaultshotgun.png')" class="statbtn"> <img src="Assets/Icons/assaultshotgun.png" alt="Gun"></img></button>
-   <button onclick="addStat('shotgun_tub12.png')" class="statbtn"> <img src="Assets/Icons/shotgun_tub12.png" alt="Gun"></img></button>
-   <button onclick="addStat('shotgun_shorty.png')" class="statbtn"> <img src="Assets/Icons/shotgun_shorty.png" alt="Gun"></img></button>
-   <button onclick="addStat('smoke.png')" class="statbtn"> <img src="Assets/Icons/smoke.png" alt="Gun"></img></button>
-   <button onclick="addStat('kr82-U.png')" class="statbtn"> <img src="Assets/Icons/kr82-U.png" alt="Gun"></img></button>
- </div>
+<button onclick="addStat()" class="addbtn">+</button>
+
+<div id="myDropdown" class="dropdown-content">
+  <button onclick="changeStat('clacker.png')" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
+  <button onclick="changeStat('mawp.png')" class="statbtn"> <img src="Assets/Icons/mawp.png" alt="Gun"></img></button>
+  <button onclick="changeStat('flashbang.png')" class="statbtn"> <img src="Assets/Icons/flashbang.png" alt="Gun"></img></button>
+  <button onclick="changeStat('nack11.png')" class="statbtn"> <img src="Assets/Icons/nack11.png" alt="Gun"></img></button>
+  <button onclick="changeStat('assaultshotgun.png')" class="statbtn"> <img src="Assets/Icons/assaultshotgun.png" alt="Gun"></img></button>
+  <button onclick="changeStat('shotgun_tub12.png')" class="statbtn"> <img src="Assets/Icons/shotgun_tub12.png" alt="Gun"></img></button>
+  <button onclick="changeStat('shotgun_shorty.png')" class="statbtn"> <img src="Assets/Icons/shotgun_shorty.png" alt="Gun"></img></button>
+  <button onclick="changeStat('smoke.png')" class="statbtn"> <img src="Assets/Icons/smoke.png" alt="Gun"></img></button>
+  <button onclick="changeStat('kr82-U.png')" class="statbtn"> <img src="Assets/Icons/kr82-U.png" alt="Gun"></img></button>
 </div>
 
 <script>
+
+var currentStat;
+
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+function myFunction(element) {
+  var dropdown = document.getElementById("myDropdown");
+  dropdown.classList.toggle("show");
+  console.log(parseInt(element.offsetTop));
+  dropdown.style.top = element.offsetTop + "px";
+  currentStat = element;
 }
 
-function addStat(string) {
+function changeStat(string) {
+  currentStat.firstElementChild.src = "Assets/Icons/" + string;
+}
+
+function addStat() {
   var statsElement = document.getElementById("statsList");
-  statsElement.insertAdjacentHTML('beforeend', "<img src='Assets/Icons/'alt='Gun'> <text>Sick Sniper Kills: Joe</text> <br>")
+  statsElement.insertAdjacentHTML('beforeend', "<button onclick='myFunction(this)' class='dropbtn'><img src='Assets/Icons/smoke.png'></button> <text contenteditable=true>EDIT TEXT HERE</text><button onclick='removeStat(this)' class='removebtn'>-</button> <br>")
+}
+
+function removeStat(element) {
+  //idk make this work
 }
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
+  if (!event.target.matches('.dropbtn img')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
     var i;
     for (i = 0; i < dropdowns.length; i++) {
