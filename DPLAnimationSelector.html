@@ -231,6 +231,7 @@ body {
 <script>
 
 var currentStat;
+var stats = new Array();
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
@@ -248,11 +249,11 @@ function changeStat(string) {
 
 function addStat() {
   var statsElement = document.getElementById("statsList");
-  statsElement.insertAdjacentHTML('beforeend', "<button onclick='myFunction(this)' class='dropbtn'><img src='Assets/Icons/smoke.png'></button> <text contenteditable=true>EDIT TEXT HERE</text><button onclick='removeStat(this)' class='removebtn'>-</button> <br>")
+  statsElement.insertAdjacentHTML('beforeend', "<div><button onclick='myFunction(this)' class='dropbtn'><img src='Assets/Icons/smoke.png'></button> <text contenteditable=true>EDIT TEXT HERE</text><button onclick='removeStat(this)' class='removebtn'>-</button><br></div>")
 }
 
 function removeStat(element) {
-  //idk make this work
+  element.parentElement.remove();
 }
 
 // Close the dropdown if the user clicks outside of it
