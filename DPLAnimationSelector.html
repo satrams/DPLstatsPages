@@ -21,7 +21,7 @@ body {
 
 @font-face {
     font-family: DPLfont;
-    src: url("assets/fonts/Bebas Neue Pro Bold.otf");
+    src: url("http://127.0.0.1:8081//fonts/BebasNeueProBold.otf");
 }
 
 * {
@@ -56,12 +56,31 @@ body {
   border-color: black;
 }
 
+.selection input {
+  font-size: var(--size);
+  min-height: calc(var(--size) + var(--size)/5);
+  min-width: 10vw;
+  max-width: 60vw;
+  color: white;
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: top;
+  margin-top: var(--size);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background-color: black;
+  border-radius: calc(var(--size)/5);
+  border-style: solid;
+  border-width: calc(var(--size)/10);
+  border-color: black;
+}
 
-.selection text:hover {
+
+.selection input:hover {
   background-color: #1c1c1c;
 }
 
-.selection text:focus {
+.selection input:focus {
   border-style: inset;
   background-color: #333333;
   border-color: darkgray;
@@ -203,12 +222,77 @@ body {
   cursor: pointer;
 }
 
+.submitbtn {
+  position: relative;
+  margin-left: var(--marginleftimg);
+  margin-top: var(--size);
+  display: inline-block;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  background-color: black;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  width:40%;
+  color: white;
+  padding: 1%;
+  line-height: 25px;
+  font-size: var(--size);
+  border-width: calc(var(--size)/10);
+  border-color: white;
+  cursor: pointer;
+}
+
 .show {display: block;}
+
+.form {
+  position: relative;
+  margin-left: var(--marginleftimg);
+  margin-top: var(--size);
+  display: inline-block;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  background-color: black;
+  display:block;
+  width:1;
+  color: white;
+  line-height: 25px;
+  font-size: var(--size);
+  border-width: calc(var(--size)/10);
+  border-color: white;
+  cursor: pointer;
+}
+.form label {
+  margin-top: 20px;
+  display:inline-block;
+}
+
+.form input {
+  vertical-align: middle;
+  height: calc(var(--size)/2);
+  font-size: calc(var(--size)/2);
+}
+
 </style>
 
 
 <body>
 
+
+<form class='form'>
+   <label for="game">Game:</label>
+   <input type="game" id="game" name="game">
+   <label for="week">Week:</label>
+   <input type="week" id="week" name="week">
+   <label for="season">Season:</label>
+   <input type="season" id="season" name="season"><br>
+   <label for="username">Username:</label>
+   <input type="username" id="username" name="username">
+   <label for="password">Password:</label>
+   <input type="password" id="password" name="password">
+ </form>
 
 <div id="statsList" class="selection">
 
@@ -217,42 +301,57 @@ body {
 <button onclick="addStat()" class="addbtn">+</button>
 
 <div id="myDropdown" class="dropdown-content">
-  <button onclick="changeStat('clacker.png')" class="statbtn"> <img src="Assets/Icons/clacker.png" alt="Gun"></img></button>
-  <button onclick="changeStat('mawp.png')" class="statbtn"> <img src="Assets/Icons/mawp.png" alt="Gun"></img></button>
-  <button onclick="changeStat('flashbang.png')" class="statbtn"> <img src="Assets/Icons/flashbang.png" alt="Gun"></img></button>
-  <button onclick="changeStat('nack11.png')" class="statbtn"> <img src="Assets/Icons/nack11.png" alt="Gun"></img></button>
-  <button onclick="changeStat('assaultshotgun.png')" class="statbtn"> <img src="Assets/Icons/assaultshotgun.png" alt="Gun"></img></button>
-  <button onclick="changeStat('shotgun_tub12.png')" class="statbtn"> <img src="Assets/Icons/shotgun_tub12.png" alt="Gun"></img></button>
-  <button onclick="changeStat('shotgun_shorty.png')" class="statbtn"> <img src="Assets/Icons/shotgun_shorty.png" alt="Gun"></img></button>
-  <button onclick="changeStat('smoke.png')" class="statbtn"> <img src="Assets/Icons/smoke.png" alt="Gun"></img></button>
-  <button onclick="changeStat('kr82-U.png')" class="statbtn"> <img src="Assets/Icons/kr82-U.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('clacker.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/clacker.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('mawp.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/mawp.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('flashbang.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/flashbang.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('nack11.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/nack11.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('assaultshotgun.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/assaultshotgun.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('shotgun_tub12.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/shotgun_tub12.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('shotgun_shorty.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/shotgun_shorty.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('smoke.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/smoke.png" alt="Gun"></img></button>
+  <button onclick="changeStatImg('kr82-U.png')" class="statbtn"> <img src="http://127.0.0.1:8081/Icons/kr82-U.png" alt="Gun"></img></button>
 </div>
+
+<button onclick="submitStats()" class="submitbtn">Submit Stats</button>
 
 <script>
 
 var currentStat;
 var stats = new Array();
+var statsNum;
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
 function myFunction(element) {
   var dropdown = document.getElementById("myDropdown");
   dropdown.classList.toggle("show");
-  console.log(parseInt(element.offsetTop));
   dropdown.style.top = element.offsetTop + "px";
   currentStat = element;
 }
 
-function changeStat(string) {
-  currentStat.firstElementChild.src = "Assets/Icons/" + string;
+function changeStatImg(string) {
+  stats[currentStat.parentElement.id][0] = currentStat.firstElementChild.src = "http://127.0.0.1:8081/Icons/" + string;
+}
+
+function changeStatTxt(stat) {
+  stats[stat.parentElement.id][1] = stat.value;
 }
 
 function addStat() {
+  console.log(stats);
+  var newLength = stats.push(['http://127.0.0.1:8081/Icons/smoke.png', 'EDIT TEXT HERE']);
   var statsElement = document.getElementById("statsList");
-  statsElement.insertAdjacentHTML('beforeend', "<div><button onclick='myFunction(this)' class='dropbtn'><img src='Assets/Icons/smoke.png'></button> <text contenteditable=true>EDIT TEXT HERE</text><button onclick='removeStat(this)' class='removebtn'>-</button><br></div>")
+  statsElement.insertAdjacentHTML('beforeend', `<div id='${newLength-1}'><button onclick='myFunction(this)' class='dropbtn'><img src='${stats[newLength-1][0]}'></button> <input type='text' onchange='changeStatTxt(this, this.value)' value='${stats[newLength-1][1]}'><button onclick='removeStat(this)' class='removebtn'>-</button><br></div>`)
 }
 
 function removeStat(element) {
+  var children = document.getElementById('statsList').children;
+  var arrayLength = children.length;
+  stats.splice(element.parentElement.id,1);
+  for (var i = element.parentElement.id; i < arrayLength; i++) {
+    console.log(i);
+    children[i].id = children[i].getAttribute("id")-1;
+  }
   element.parentElement.remove();
 }
 
@@ -269,6 +368,30 @@ window.onclick = function(event) {
     }
   }
 }
+
+function submitStats() {
+  var xhttp = new XMLHttpRequest();
+  gameEl = document.getElementById('game');
+  weekEl = document.getElementById('week');
+  seasonEl = document.getElementById('season');
+  let data = {};
+
+  data.game = gameEl.value;
+  data.week = weekEl.value;
+  data.season = seasonEl.value;
+  data.colorstats = stats;
+
+  xhttp.open("POST", "http://127.0.0.1:8081/statsupload", true);
+  xhttp.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+  xhttp.send(JSON.stringify(data));
+  xhttp.onreadystatechange = function () {
+    if (xhttp.readyState != 4) return;
+
+    console.log(xhttp.responseText);
+
+  }
+}
+
 </script>
 
 </body>
