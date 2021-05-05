@@ -15,9 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     colorstats: {
       type: DataTypes.JSON,
     },
-    seasonId: {
-      type: DataTypes.JSON,
-    },
 	}, {
 		timestamps: false,
 		tableName: 'week',

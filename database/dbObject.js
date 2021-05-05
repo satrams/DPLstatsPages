@@ -31,26 +31,29 @@ const getMethods = (obj) => {
 
 async function doStuff(Game, Week, Season) {
 
+	var sMaxId;
+
 	const sMax = await Season.findAll({
 		attributes: [[fn('max', col('id')), 'id']],
 		raw: true,
 	});
 
-	const sMaxId = sMax.valueOf('id') || -1;
+	sMaxId = sMax[0]['id'] ?? -1;
+
 
 	const wMax = await Week.findAll({
 		attributes: [[fn('max', col('id')), 'id']],
 		raw: true,
 	});
 
-	const wMaxId = wMax.valueOf('id') || -1;
+	const wMaxId = wMax[0]['id'] ?? -1;
 
 	const gMax = await Game.findAll({
 		attributes: [[fn('max', col('id')), 'id']],
 		raw: true,
 	});
 
-	const gMaxId = gMax.valueOf('id') || -1;
+	const gMaxId = gMax[0]['id'] ?? -1;
 
 
 	const e = await Game.findAll({
@@ -61,11 +64,11 @@ async function doStuff(Game, Week, Season) {
 	console.log(e);
 
 	console.log(sMax);
-	console.log(sMax.id);
+	console.log(sMax[0]['id']);
 
 	console.log(sMaxId);
 	console.log(getMethods(sMax));
-	console.log("eeeeeeeeeeeeeeee")
+	console.log("eeeeeeeeeeeeeeee");
 
 	season1 = await Season.create({ id: parseInt(sMaxId)+1, name: "season1" }).catch( error => {console.log(error)});
 	week1 = await Week.create({ id: parseInt(wMaxId)+1, name: "week11" }).catch( error => {console.log(error)});
