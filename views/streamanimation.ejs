@@ -21,7 +21,7 @@ body {
 
 @font-face {
     font-family: DPLfont;
-    src: url("assets/fonts/Bebas Neue Pro Bold.otf");
+    src: url("http://127.0.0.1:8081//fonts/BebasNeueProBold.otf");
 }
 
 * {
@@ -101,14 +101,21 @@ div.slide-left img {
 }
 /*
   Animates the images to move left whilst fading in
-  test test
 */
 
 </style>
 
 
-<div class="slide-left">
-  <img src="Assets/Icons/Mawp.png" alt="Gun"> <p>Sick Sniper Kills: Joe</p> <br>
-  <img src="Assets/Icons/AP_25.png" alt="Gun"> <p>Most AP-25 Kills: Romulus (the numbers guy)</p> <br>
-  <img src="Assets/Icons/AP_25.png" alt="Gun"> <p>Hopefully this works</p> <br>
+<div class="slide-left" id="statsList">
+
 </div>
+
+<script>
+  let colorstats = <%- JSON.stringify(colorstats) %>;
+
+  var statsElement = document.getElementById("statsList");
+  colorstats.forEach(function(stat) {
+    statsElement.insertAdjacentHTML('beforeend', `<img src='${stat[0]}' alt="Gun"><p>${stat[1]}</p><br>`);
+  })
+
+</script>

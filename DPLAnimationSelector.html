@@ -245,17 +245,18 @@ body {
 }
 
 .submitmsg {
-  margin-top: var(--size);
   background-color: black;
   color: white;
   background-color: black;
-  width:40%;
+  max-width:40%;
   color: white;
   text-align:center;
-  margin-left:auto;
-  margin-right:auto;
-  display:block;
+  display:inline-block;
+  margin:0px;
+  margin-right:10px;
+  padding:0px;
   font-size: var(--size);
+  vertical-align:middle;
 }
 
 .show {display: block;}
@@ -287,6 +288,28 @@ body {
   vertical-align: middle;
   height: calc(var(--size)/2);
   font-size: calc(var(--size)/2);
+}
+
+.center {
+  border: none;
+  text-overflow: ellipsis;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  background-color: black;
+}
+
+.link {
+  border: none;
+  text-overflow: ellipsis;
+  height: calc(var(--size)/2);
+  vertical-align:middle;
+  margin-top: calc(var(--size)); /* apparently having both the top margin and the height being the same thing aligns it to the text */
+  display: inline;
+  margin:0px;
+  padding:0px;
+  background-color: black;
+  cursor: pointer;
 }
 
 </style>
@@ -327,7 +350,26 @@ body {
 </div>
 
 <button onclick="submitStats()" class="submitbtn">Submit Stats</button>
-<text id="submitResponse" class="submitmsg" align=center></text>
+<br>
+
+<div>
+
+
+  <div class="center">
+   <text id="submitResponse" class="submitmsg" align=center></text>
+  </div>
+
+  <div class="center">
+    <text class="submitmsg" align=center>Stats Link (share this):</text>
+  </div>
+  <div class="center">
+    <text class="submitmsg" align=center id='linktext'>link will be generated here</text>
+    <button onclick="copyLink()" class="link">
+      <img src="http://127.0.0.1:8081/misc/link.png" class="link">
+    </button>
+  </div>
+
+</div>
 
 <script>
 
@@ -396,6 +438,10 @@ function submitStats() {
   data.season = seasonEl.value;
   data.colorstats = stats;
 
+  link = document.getElementById('linktext');
+  link.innerHTML = document.location.origin + `/streamstats?season=${data.season}&week=${data.week}&game=${data.game}`;
+  link.href = document.location.origin + `/streamstats?season=${data.season}&week=${data.week}&game=${data.game}`;
+
   xhttp.open("POST", "http://127.0.0.1:8081/statsupload", true);
   xhttp.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhttp.send(JSON.stringify(data));
@@ -406,6 +452,8 @@ function submitStats() {
     document.getElementById('submitResponse').innerHTML = xhttp.responseText;
 
   }
+
+  document.getElementById('submitResponse').innerHTML = "...";
 }
 
 

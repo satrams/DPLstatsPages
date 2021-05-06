@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 	return sequelize.define('game', {
 		id: {
-			type: DataTypes.STRING,
+			type: DataTypes.INTEGER,
 			allowNull: false,
 			primaryKey: true,
 		},
