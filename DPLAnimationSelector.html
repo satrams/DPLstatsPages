@@ -26,24 +26,32 @@ body {
 
 * {
    font-family: DPLfont;
+   font-size: var(--size);
+   color:white;
+   border-color:white;
  }
 /*
   Code for lodaing the font
 */
 
+.dropdown-content, .submitbtn, .addbtn, .dropbtn, .selection img, .form {
+  margin-left: var(--marginleftimg);
+}
 
 
 .selection {
   width:100%;
-  overflow:hidden
+  overflow:hidden;
 }
 
-.selection text {
-  font-size: var(--size);
+.selection :not(div) {
+  border-style: solid;
+}
+
+.selection text, .selection input {
   min-height: calc(var(--size) + var(--size)/5);
   min-width: 10vw;
   max-width: 60vw;
-  color: white;
   display: inline-block;
   margin-left: 10px;
   margin-top: var(--size);
@@ -51,28 +59,13 @@ body {
   text-overflow: ellipsis;
   background-color: black;
   border-radius: calc(var(--size)/5);
-  border-style: solid;
+
   border-width: calc(var(--size)/10);
   border-color: black;
 }
 
 .selection input {
-  font-size: var(--size);
-  min-height: calc(var(--size) + var(--size)/5);
-  min-width: 10vw;
-  max-width: 60vw;
-  color: white;
-  display: inline-block;
-  margin-left: 10px;
   vertical-align: top;
-  margin-top: var(--size);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  background-color: black;
-  border-radius: calc(var(--size)/5);
-  border-style: solid;
-  border-width: calc(var(--size)/10);
-  border-color: black;
 }
 
 
@@ -94,14 +87,12 @@ body {
 .selection img {
   border-style: solid;
   border-width: calc(var(--size)/10);
-  border-color: white;
   padding: calc(var(--size)/10);
   text-overflow: ellipsis;
   height: var(--size);
   margin-top: calc(var(--size)); /* apparently having both the top margin and the height being the same thing aligns it to the text */
   margin-right:0px;
   display: inline-block;
-  margin-left: var(--marginleftimg);
 }
 /*
   code for the img elements
@@ -117,7 +108,6 @@ body {
   margin-right:0px;
   padding: 0px;
   height: calc(var(--size)*1.4);
-  margin-left: var(--marginleftimg);
   display: inline-block;
   z-index: 1;
   cursor: pointer;
@@ -137,11 +127,9 @@ body {
 
 .addbtn {
   position: relative;
-  margin-left: var(--marginleftimg);
   margin-top: var(--size);
   display: inline-block;
   background-color: black;
-  color: white;
   cursor: pointer;
   background-color: black;
   color: white;
@@ -149,9 +137,7 @@ body {
   line-height: 25px;
   padding-top: 0px;
   padding-bottom: 10px;
-  font-size: var(--size);
   border-width: calc(var(--size)/10);
-  border-color: white;
   cursor: pointer;
 }
 
@@ -177,7 +163,6 @@ body {
 }
 
 .dropdown-content {
-  margin-left: var(--marginleftimg);
   margin-top: calc(var(--size)*1.4);
   display: inline-block;
   display: none;
@@ -207,7 +192,6 @@ body {
   margin-left: 30px;
   display: inline-block;
   background-color: black;
-  color: white;
   cursor: pointer;
   background-color: black;
   color: white;
@@ -216,46 +200,40 @@ body {
   padding-top: 0px;
   vertical-align: top;
   padding-bottom: 10px;
-  font-size: var(--size);
   border-width: calc(var(--size)/10);
-  border-color: white;
   cursor: pointer;
 }
 
 .submitbtn {
   position: relative;
-  margin-left: var(--marginleftimg);
   margin-top: var(--size);
   display: inline-block;
   background-color: black;
-  color: white;
   cursor: pointer;
   background-color: black;
   display:block;
   margin-left:auto;
   margin-right:auto;
-  width:40%;
+  width:500px;
   color: white;
-  padding: 1%;
+  padding: 15px;
+  padding-left: 0%;
+  padding-right: 0%;
   line-height: 25px;
-  font-size: var(--size);
   border-width: calc(var(--size)/10);
-  border-color: white;
   cursor: pointer;
 }
 
 .submitmsg {
   background-color: black;
-  color: white;
   background-color: black;
   max-width:40%;
-  color: white;
   text-align:center;
   display:inline-block;
   margin:0px;
   margin-right:10px;
   padding:0px;
-  font-size: var(--size);
+  font-size: calc(var(--size)/2);
   vertical-align:middle;
 }
 
@@ -263,20 +241,16 @@ body {
 
 .form {
   position: relative;
-  margin-left: var(--marginleftimg);
   margin-top: var(--size);
   display: inline-block;
   background-color: black;
-  color: white;
   cursor: pointer;
   background-color: black;
   display:block;
   width:1;
   color: white;
   line-height: 25px;
-  font-size: var(--size);
   border-width: calc(var(--size)/10);
-  border-color: white;
   cursor: pointer;
 }
 .form label {
@@ -397,7 +371,7 @@ body {
 
   <br>
   <div class="center">
-    <text class="submitmsg" align=center>Stats Link (share this):</text>
+    <text class="submitmsg" align=center style="font-size:var(--size)">Stats Link (share this):</text>
   </div>
   <div class="center">
       <text class="submitmsg" align=center id='linktext'>link will be generated here</text>
@@ -476,9 +450,7 @@ function submitStats() {
   data.season = seasonEl.value;
   data.colorstats = stats;
 
-  link = document.getElementById('linktext');
-  link.innerHTML = document.location.origin + `/streamstats?season=${data.season}&week=${data.week}&game=${data.game}`;
-  link.href = document.location.origin + `/streamstats?season=${data.season}&week=${data.week}&game=${data.game}`;
+
 
   xhttp.open("POST", "http://127.0.0.1:8081/statsupload", true);
   xhttp.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
@@ -488,6 +460,10 @@ function submitStats() {
 
     console.log(xhttp.responseText);
     document.getElementById('submitResponse').innerHTML = xhttp.responseText;
+
+    link = document.getElementById('linktext');
+    link.innerHTML = document.location.origin + `/streamstats?season=${data.season}&week=${data.week}&game=${data.game}`;
+    link.href = document.location.origin + `/streamstats?season=${data.season}&week=${data.week}&game=${data.game}`;
 
   }
 
