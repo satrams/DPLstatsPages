@@ -312,6 +312,44 @@ body {
   cursor: pointer;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
 </style>
 
 
@@ -353,20 +391,20 @@ body {
 <br>
 
 <div>
-
-
   <div class="center">
    <text id="submitResponse" class="submitmsg" align=center></text>
   </div>
 
+  <br>
   <div class="center">
     <text class="submitmsg" align=center>Stats Link (share this):</text>
   </div>
   <div class="center">
-    <text class="submitmsg" align=center id='linktext'>link will be generated here</text>
-    <button onclick="copyLink()" class="link">
-      <img src="http://127.0.0.1:8081/misc/link.png" class="link">
-    </button>
+      <text class="submitmsg" align=center id='linktext'>link will be generated here</text>
+      <div class="tooltip">
+        <img src="http://127.0.0.1:8081/misc/link.png" class="link" onclick="copyLink()" class="link" onmouseout="outFunc()">
+        <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+      </div>
   </div>
 
 </div>
@@ -474,6 +512,24 @@ function setInputFilter(textbox, inputFilter) {
     });
   });
 }
+
+async function copyLink() {
+  /* Get the text field */
+  var copyText = document.getElementById("linktext").textContent;
+
+  if (navigator.clipboard != undefined) {//Chrome
+    await navigator.clipboard.writeText(copyText);
+  } else if(window.clipboardData) {
+    window.clipboardData.setData("Text", copyText);
+  }
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "Copied: " + copyText;
+ }
+
+ function outFunc() {
+   var tooltip = document.getElementById("myTooltip");
+   tooltip.innerHTML = "Copy to clipboard";
+ }
 
 ["game", "week", "season"].forEach(function(thing) {
   setInputFilter(document.getElementById(thing), function(value) {
