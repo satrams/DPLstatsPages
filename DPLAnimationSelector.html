@@ -292,6 +292,11 @@ body {
   display: inline-block;
 }
 
+.tooltip img {
+  position:absolute;
+  top:5px;
+}
+
 .tooltip .tooltiptext {
   visibility: hidden;
   width: 140px;
@@ -302,9 +307,8 @@ body {
   padding: 5px;
   position: absolute;
   z-index: 1;
-  bottom: 150%;
-  left: 50%;
-  margin-left: -75px;
+  bottom: 10%;
+  margin-left: -60px;
   opacity: 0;
   transition: opacity 0.3s;
   font-size:calc(var(--size)/4)
@@ -377,7 +381,7 @@ body {
   </div>
   <div class="center">
       <text class="submitmsg" align=center id='linktext'>link will be generated here</text>
-      <div class="tooltip">
+      <div class="tooltip" style="top:-15px">
         <img src="http://127.0.0.1:8081/misc/link.png" class="link" onclick="copyLink()" class="link" onmouseout="outFunc()">
         <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
       </div>
