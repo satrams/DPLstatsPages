@@ -13,6 +13,9 @@
   --opacity: 1; /* the end opacity to fade to */
   --animationduration: 1.5s;
   --size: 50px; /* the size of the text, images, and borders. Basically all of the sizes are tied to this value*/
+
+
+  --removebtnwidth: calc(var(--marginleftimg) * (var(--size)/100 * .68));
 }
 
 body {
@@ -34,7 +37,7 @@ body {
   Code for lodaing the font
 */
 
-.dropdown-content, .submitbtn, .addbtn, .dropbtn, .selection img, .form {
+.dropdown-content, .submitbtn, .addbtn, .selection img, .form {
   margin-left: var(--marginleftimg);
 }
 
@@ -48,10 +51,11 @@ body {
   border-style: solid;
 }
 
-.selection text, .selection input {
+.selection textarea, .selection input {
   min-height: calc(var(--size) + var(--size)/5);
   min-width: 10vw;
-  max-width: 60vw;
+  max-width: 70vw;
+  height: 2vw;
   display: inline-block;
   margin-left: 10px;
   margin-top: var(--size);
@@ -64,16 +68,16 @@ body {
   border-color: black;
 }
 
-.selection input {
+.selection textarea {
   vertical-align: top;
 }
 
 
-.selection input:hover {
+.selection textarea:hover {
   background-color: #1c1c1c;
 }
 
-.selection input:focus {
+.selection textarea:focus {
   border-style: inset;
   background-color: #333333;
   border-color: darkgray;
@@ -189,12 +193,14 @@ body {
 
 .removebtn {
   margin-top: calc(var(--size) + var(--size)/3.5);
-  margin-left: 30px;
-  display: inline-block;
+  margin-left:calc(var(--marginleftimg) * 0.3);
+  margin-right:calc((var(--marginleftimg) * 0.38));
+  display: inline-flex;
   background-color: black;
   cursor: pointer;
   background-color: black;
   color: white;
+  width: var(--removebtnwidth);
   padding: 10px;
   line-height: 25px;
   padding-top: 0px;
@@ -330,13 +336,25 @@ body {
   opacity: 1;
 }
 
+.hide {
+  visibility:hidden;
+  white-space:nowrap;
+}
+
+.hiddendiv {
+  display: none;
+  max-width: 70vw;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 </style>
 
 
 <body>
 
 
-<form class='form'>
+<form id="form" class='form'>
    <label for="game">Game:</label>
    <input type="game" id="game" name="game">
    <label for="week">Week:</label>
@@ -416,7 +434,11 @@ function addStat() {
   console.log(stats);
   var newLength = stats.push(['http://127.0.0.1:8081/Icons/smoke.png', 'EDIT TEXT HERE']);
   var statsElement = document.getElementById("statsList");
-  statsElement.insertAdjacentHTML('beforeend', `<div id='${newLength-1}'><button onclick='myFunction(this)' class='dropbtn'><img src='${stats[newLength-1][0]}'></button> <input type='text' onchange='changeStatTxt(this, this.value)' value='${stats[newLength-1][1]}'><button onclick='removeStat(this)' class='removebtn'>-</button><br></div>`)
+  statsElement.insertAdjacentHTML('beforeend', `<div id='${newLength-1}'><button onclick='removeStat(this)' class='removebtn'>-</button><button onclick='myFunction(this)' class='dropbtn'><img src='${stats[newLength-1][0]}'></button><textarea contenteditable='true' onchange='changeStatTxt(this)'>${stats[newLength-1][1]}</textarea><span class='hide'></span><br></div>`)
+
+  e = document.getElementById(newLength-1);
+  increaseWidth(e.childNodes[2]);
+
 }
 
 function removeStat(element) {
@@ -495,6 +517,38 @@ function setInputFilter(textbox, inputFilter) {
   });
 }
 
+
+let hiddenDiv = document.createElement('dv'),
+  content = null;
+
+hiddenDiv.classList.add('hiddendiv');
+
+function increaseWidth(textbox) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      console.log('e');
+      this.style.width = (this.value.length * 21) + 'px';
+
+      this.parentNode.appendChild(hiddenDiv);
+      this.style.resize = 'none';
+      this.style.overflow = 'hidden';
+      content = this.value;
+      content = content.replace(/\n/g, '<br>'); //for old IE just in case
+      // The <br ..> part is for old IE
+      hiddenDiv.innerHTML = content + '<br style="line-height: 3px;">';
+      // Briefly make the hidden div block but invisible
+      // This is in order to read the height
+      hiddenDiv.style.visibility = 'hidden';
+      hiddenDiv.style.display = 'block';
+      this.style.height = hiddenDiv.offsetHeight + 'px';
+      // Make the hidden div display:none again
+      hiddenDiv.style.visibility = 'visible';
+      hiddenDiv.style.display = 'none';
+
+    });
+  });
+}
+
 async function copyLink() {
   /* Get the text field */
   var copyText = document.getElementById("linktext").textContent;
@@ -512,6 +566,14 @@ async function copyLink() {
    var tooltip = document.getElementById("myTooltip");
    tooltip.innerHTML = "Copy to clipboard";
  }
+
+
+
+
+
+
+
+
 
 ["game", "week", "season"].forEach(function(thing) {
   setInputFilter(document.getElementById(thing), function(value) {
