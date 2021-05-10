@@ -407,6 +407,9 @@ body {
 
 </div>
 
+<br>
+<br>
+
 <script>
 
 var currentStat;
@@ -434,9 +437,12 @@ function addStat() {
   console.log(stats);
   var newLength = stats.push(['http://127.0.0.1:8081/Icons/smoke.png', 'EDIT TEXT HERE']);
   var statsElement = document.getElementById("statsList");
-  statsElement.insertAdjacentHTML('beforeend', `<div id='${newLength-1}'><button onclick='removeStat(this)' class='removebtn'>-</button><button onclick='myFunction(this)' class='dropbtn'><img src='${stats[newLength-1][0]}'></button><textarea contenteditable='true' onchange='changeStatTxt(this)'>${stats[newLength-1][1]}</textarea><span class='hide'></span><br></div>`)
+  statsElement.insertAdjacentHTML('beforeend', `<div id='${newLength-1}'><button onclick='removeStat(this)' class='removebtn'>-</button><button onclick='myFunction(this)' class='dropbtn'><img src='${stats[newLength-1][0]}'></button><textarea onchange='changeStatTxt(this)'>${stats[newLength-1][1]}</textarea><span class='hide'></span><br></div>`)
 
   e = document.getElementById(newLength-1);
+  e.childNodes[2].style.resize='none';
+  e.childNodes[2].style.overflow='hidden';
+  e.childNodes[2].style.width='300px';
   increaseWidth(e.childNodes[2]);
 
 }
